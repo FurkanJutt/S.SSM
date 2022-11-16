@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1059250367313",
+    "project_id": "ssm-auth-78c3a",
+    "storage_bucket": "ssm-auth-78c3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059250367313:android:4cfdb3d6629ec2bec90170",
+        "android_client_info": {
+          "package_name": "com.ulbululstudios.sssm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059250367313-lh14c8aujr9sqj56n3jvv21eg72ao0hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtbgdwX3xrLeAy4_py3HbkW-8G_z-zooU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059250367313-lh14c8aujr9sqj56n3jvv21eg72ao0hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

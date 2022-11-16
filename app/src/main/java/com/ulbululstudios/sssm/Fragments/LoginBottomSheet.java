@@ -17,6 +17,9 @@ public class LoginBottomSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login_bottom_sheet, container, false);
 
+        // Cut these to show bottom sheet in any activity
+        /*LoginBottomSheet loginBottomSheet = new LoginBottomSheet();
+        loginBottomSheet.show(getSupportFragmentManager(), "ModalLoginBottomSheet");*/
 
         return view;
     }

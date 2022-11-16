@@ -79,8 +79,8 @@
         android:layout_marginTop="20dp"
         android:text="Send Email"
         android:textAllCaps="false"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:textSize="18sp"
         android:backgroundTint="@color/purple"
         android:textColor="@color/white"
@@ -92,18 +92,32 @@
         />
 
     <TextView
-        android:id="@+id/tv_get_uni_mail"
+        android:id="@+id/lbl_having_trouble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Still Having Trouble? Contact Us"
-        android:gravity="center"
         android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.3"
+        android:gravity="center"
+        android:text="Still Having Trouble? "
         android:textSize="15sp"
         app:fontFamily="@font/cabin_semibold"
         app:layout_constraintEnd_toEndOf="@+id/btn_send_email"
         app:layout_constraintStart_toStartOf="@+id/btn_send_email"
-        app:layout_constraintTop_toBottomOf="@+id/btn_send_email"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_send_email" />
+
+    <TextView
+        android:id="@+id/tv_contact_us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_us"
+        android:textSize="15sp"
+        app:layout_constraintHorizontal_bias="0.01"
+        android:textColor="@color/blue"
+        app:fontFamily="@font/cabin_semibold"
+        app:layout_constraintBottom_toBottomOf="@+id/lbl_having_trouble"
+        app:layout_constraintEnd_toEndOf="@+id/btn_send_email"
+        app:layout_constraintStart_toEndOf="@+id/lbl_having_trouble"
+        app:layout_constraintTop_toTopOf="@+id/lbl_having_trouble" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/layout_login_bottom_sheet"
