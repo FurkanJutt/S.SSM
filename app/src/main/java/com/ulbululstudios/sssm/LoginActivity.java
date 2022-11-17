@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Please verify your email first!", Toast.LENGTH_SHORT).show();
                     } else {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(LoginActivity.this, TimeTableActivity.class));
                     }
 
                 } else {

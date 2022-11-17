@@ -82,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:textColor="@color/white"
             app:fontFamily="@font/cabin_bold"
             />
 
@@ -111,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             app:fontFamily="@font/cabin_bold"
             />
 
