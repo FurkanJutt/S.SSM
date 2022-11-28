@@ -25,7 +25,6 @@ import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ulbululstudios.sssm.Fragments.LoginBottomSheet;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,6 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+        setTitle("Student State Management");
+
         mAuth = FirebaseAuth.getInstance();
 
         etSendEmail = findViewById(R.id.et_send_email);
@@ -63,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void SetBottomSheetView() {
         FrameLayout fl = findViewById(R.id.fl_login_bottom_sheet);
         final LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ConstraintLayout flc = (ConstraintLayout) inflater.inflate(R.layout.login_bottom_sheet,null);
+        ConstraintLayout flc = (ConstraintLayout) inflater.inflate(R.layout.design_login_bottom_sheet,null);
 
         fl.addView(flc);
 
@@ -110,8 +111,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 bottomSheetBehavior.setPeekHeight(150);
                 break;
             case R.id.btn_login:
-                Toast.makeText(this, "login", Toast.LENGTH_SHORT).show();
                 LoginUser();
+                Toast.makeText(this, "login", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_send_email:
                 Toast.makeText(this, "send email", Toast.LENGTH_SHORT).show();
@@ -160,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Please verify your email first!", Toast.LENGTH_SHORT).show();
                     } else {
-                        startActivity(new Intent(LoginActivity.this, TimeTableActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
 
                 } else {

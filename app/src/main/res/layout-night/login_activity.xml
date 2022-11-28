@@ -84,7 +84,7 @@
         android:textSize="18sp"
         android:backgroundTint="@color/purple"
         android:textColor="@color/white"
-        app:cornerRadius="25dp"
+        app:cornerRadius="12dp"
         app:fontFamily="@font/cabin_bold"
         app:layout_constraintEnd_toEndOf="@+id/layout_send_email"
         app:layout_constraintStart_toStartOf="@+id/layout_send_email"

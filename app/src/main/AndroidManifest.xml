@@ -12,14 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SSSM">
         <activity
+            android:name=".Fragments.AddSectionBottomSheet"
+            android:exported="false" />
+        <activity
             android:name=".TimeTableActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".LoginActivity"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

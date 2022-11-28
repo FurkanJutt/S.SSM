@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/purple"
+    android:elevation="6dp"
+    app:cardCornerRadius="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_department_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BSCS"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/cabin"
+            />
+
+        <TextView
+            android:id="@+id/tv_section_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="6A"
+            android:textColor="@color/white"
+            android:textSize="55sp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/cabin_bold"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

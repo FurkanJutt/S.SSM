@@ -24,20 +24,15 @@ public class TimeTableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_table);
 
+        setTitle("Time Table");
+
         initVariables();
 
         rvTimeTable.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<TimeTable> options =
                 new FirebaseRecyclerOptions.Builder<TimeTable>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("teachers"), new SnapshotParser<TimeTable>() {
-                            @NonNull
-                            @Override
-                            public TimeTable parseSnapshot(@NonNull DataSnapshot snapshot) {
-                                snapshot.child("t1").child("name");
-                                return null;
-                            }
-                        })
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("teachers"), TimeTable.class)
                         .build();
 
         tableAdapter = new TableAdapter(options);

@@ -34,7 +34,7 @@ public class TableAdapter extends FirebaseRecyclerAdapter<TimeTable, TableViewHo
     @NonNull
     @Override
     public TableViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.table_design, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.design_section_table, parent, false);
         return new TableViewHolder(view);
     }
 }
