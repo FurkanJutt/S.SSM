@@ -19,10 +19,17 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -112,6 +119,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
         //endregion
+
+        sectionAdapter.setOnItemClickListener(new SectionAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Section section = documentSnapshot.toObject(Section.class);
+                String id = documentSnapshot.getId();
+                Intent sectionIntent = new Intent(MainActivity.this, TimeTableActivity.class);
+                sectionIntent.putExtra("snapshotID", id);
+                startActivity(sectionIntent);
+
+                Toast.makeText(MainActivity.this, "ID: " + id, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void addSectionListener() {
@@ -155,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 departmentSelect.setAdapter(itemAdapter);
 
+                // TODO: remove onItemClick()
                 departmentSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -182,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 semesterSelect.setAdapter(itemAdapter);
 
+                // TODO: remove onItemClick()
                 semesterSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -209,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 sectionSelect.setAdapter(itemAdapter);
 
+                // TODO: remove onItemClick()
                 sectionSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -233,7 +256,24 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         String sem_sec = sem+sec;
-                        sectionRef.add(new Section(dep, sem_sec));
+
+                        // Check if data already exists in database
+                        //Query query = sectionRef.whereEqualTo("department", dep).whereEqualTo("section", sem_sec);
+                        sectionRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                Boolean isExisting = false;
+                                for (DocumentSnapshot ds : queryDocumentSnapshots) {
+                                    if (ds.getString("department").equals(dep) && ds.getString("section").equals(sem_sec)) {
+                                        Toast.makeText(MainActivity.this, "Section Already Exists!", Toast.LENGTH_SHORT).show();
+                                        isExisting = true;
+                                    }
+                                }
+                                if (!isExisting) {
+                                    sectionRef.add(new Section(dep, sem_sec));
+                                }
+                            }
+                        });
                     }
                 });
                 //endregion

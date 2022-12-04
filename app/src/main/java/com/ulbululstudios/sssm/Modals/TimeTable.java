@@ -2,6 +2,7 @@ package com.ulbululstudios.sssm.Modals;
 
 public class TimeTable {
 
+    private static String _ID, _Semester, _Section;
     private String time, subject, room, teacher;
 
     public TimeTable() {
@@ -9,6 +10,9 @@ public class TimeTable {
         subject = "subject";
         room = "room";
         teacher = "teacher";
+        _ID = "";
+        _Section = "";
+        _Semester = "";
     }
 
     public TimeTable(String time, String subject, String room, String teacher) {

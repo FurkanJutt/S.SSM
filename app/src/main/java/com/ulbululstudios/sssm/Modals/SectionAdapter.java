@@ -10,15 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.ulbululstudios.sssm.R;
 
-public class SectionAdapter extends FirestoreRecyclerAdapter<Section, SectionHolder> {
+public class SectionAdapter extends FirestoreRecyclerAdapter<Section, SectionAdapter.SectionHolder> {
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
      * @param options
      */
+
+    public OnItemClickListener listener;
+
     public SectionAdapter(@NonNull FirestoreRecyclerOptions<Section> options) {
         super(options);
     }
@@ -39,17 +43,37 @@ public class SectionAdapter extends FirestoreRecyclerAdapter<Section, SectionHol
     public void DeleteItem(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
     }
-}
 
-class SectionHolder extends RecyclerView.ViewHolder {
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
-    protected TextView tvDepartmentDetail; // TODO: implement department text;
-    protected TextView tvSectionDetail;
+    public class SectionHolder extends RecyclerView.ViewHolder {
+        protected TextView tvDepartmentDetail; // TODO: implement department text;
+        protected TextView tvSectionDetail;
 
-    public SectionHolder(@NonNull View itemView) {
-        super(itemView);
+        public SectionHolder(@NonNull View itemView) {
+            super(itemView);
 
-        tvDepartmentDetail = itemView.findViewById(R.id.tv_department_detail);
-        tvSectionDetail = itemView.findViewById(R.id.tv_section_detail);
+            tvDepartmentDetail = itemView.findViewById(R.id.tv_department_detail);
+            tvSectionDetail = itemView.findViewById(R.id.tv_section_detail);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAbsoluteAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.OnItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
+        }
+    }
+
+    public interface  OnItemClickListener{
+        void OnItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 }
+
+
+
