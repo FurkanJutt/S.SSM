@@ -49,7 +49,7 @@ public class SectionAdapter extends FirestoreRecyclerAdapter<Section, SectionAda
     }
 
     public class SectionHolder extends RecyclerView.ViewHolder {
-        protected TextView tvDepartmentDetail; // TODO: implement department text;
+        protected TextView tvDepartmentDetail;
         protected TextView tvSectionDetail;
 
         public SectionHolder(@NonNull View itemView) {

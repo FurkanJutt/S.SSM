@@ -10,16 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.ulbululstudios.sssm.R;
 
-public class TableAdapter extends FirebaseRecyclerAdapter<TimeTable, TableViewHolder> {
+public class TableAdapter extends FirestoreRecyclerAdapter<TimeTable, TableViewHolder> {
     /***
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public TableAdapter(@NonNull FirebaseRecyclerOptions<TimeTable> options) {
+    public TableAdapter(@NonNull FirestoreRecyclerOptions<TimeTable> options) {
         super(options);
     }
 

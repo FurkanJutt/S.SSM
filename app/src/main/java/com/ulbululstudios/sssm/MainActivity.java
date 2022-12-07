@@ -262,12 +262,12 @@ public class MainActivity extends AppCompatActivity {
                         sectionRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                Boolean isExisting = false;
+                                boolean isExisting = false;
                                 for (DocumentSnapshot ds : queryDocumentSnapshots) {
-                                    if (ds.getString("department").equals(dep) && ds.getString("section").equals(sem_sec)) {
-                                        Toast.makeText(MainActivity.this, "Section Already Exists!", Toast.LENGTH_SHORT).show();
-                                        isExisting = true;
-                                    }
+                                        if (ds.getString("department").equals(dep) && ds.getString("section").equals(sem_sec)) {
+                                            Toast.makeText(MainActivity.this, "Section Already Exists!", Toast.LENGTH_SHORT).show();
+                                            isExisting = true;
+                                        }
                                 }
                                 if (!isExisting) {
                                     sectionRef.add(new Section(dep, sem_sec));
@@ -297,15 +297,15 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Logout?")
-                .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    }
-                })
-                .setNegativeButton("Cancel", null)
-                .setIcon(R.drawable.ic_round_error_outline_24)
-                .show();
+            .setTitle("Logout?")
+            .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            })
+            .setNegativeButton("Cancel", null)
+            .setIcon(R.drawable.ic_round_error_outline_24)
+            .show();
     }
 }

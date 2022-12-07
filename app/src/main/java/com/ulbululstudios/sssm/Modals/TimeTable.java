@@ -2,17 +2,13 @@ package com.ulbululstudios.sssm.Modals;
 
 public class TimeTable {
 
-    private static String _ID, _Semester, _Section;
     private String time, subject, room, teacher;
 
     public TimeTable() {
-        time = "00:00";
+        time = "00:00 - 00:00";
         subject = "subject";
         room = "room";
         teacher = "teacher";
-        _ID = "";
-        _Section = "";
-        _Semester = "";
     }
 
     public TimeTable(String time, String subject, String room, String teacher) {
@@ -24,10 +20,6 @@ public class TimeTable {
 
     public String getTime() {
         return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public String getSubject() {
