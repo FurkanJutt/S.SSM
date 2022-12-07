@@ -70,7 +70,7 @@ public class SectionAdapter extends FirestoreRecyclerAdapter<Section, SectionAda
         }
     }
 
-    public interface  OnItemClickListener{
+    public interface OnItemClickListener{
         void OnItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 }

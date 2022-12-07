@@ -2,24 +2,29 @@ package com.ulbululstudios.sssm.Modals;
 
 public class TimeTable {
 
-    private String time, subject, room, teacher;
+    private String timeFrom, timeTo, subject, room, teacher;
 
     public TimeTable() {
-        time = "00:00 - 00:00";
+        timeFrom = "00:00";
+        timeTo = "00:00";
         subject = "subject";
         room = "room";
         teacher = "teacher";
     }
 
-    public TimeTable(String time, String subject, String room, String teacher) {
-        this.time = time;
+    public TimeTable(String timeFrom, String timeTo, String subject, String room, String teacher) {
+        this.timeFrom = timeFrom;
+        this.timeTo = timeTo;
         this.subject = subject;
         this.room = room;
         this.teacher = teacher;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimeFrom() {
+        return timeFrom;
+    }
+    public String getTimeTo() {
+        return timeTo;
     }
 
     public String getSubject() {

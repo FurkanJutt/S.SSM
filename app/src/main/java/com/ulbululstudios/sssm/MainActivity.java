@@ -19,16 +19,11 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -47,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
     // ---------------------------------------------------------------------------------------------
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final CollectionReference sectionRef = db.collection("Sections");
+    private final CollectionReference timetableRef = db.collection("TimeTables");
     private final CollectionReference staticDepartmentRef = db.collection("static_department");
     private final CollectionReference staticSemesterRef = db.collection("static_semester");
     private final CollectionReference staticSectionRef = db.collection("static_section");
+    private final CollectionReference staticBatchRef = db.collection("static_batch");
 
     private SectionAdapter sectionAdapter;
     private RecyclerView recyclerView;
@@ -57,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     // Views Declaration
     private ExtendedFloatingActionButton fabAddNewSection;
     private ImageView ivCloseSectionTab;
+    private MaterialButton btnGenerateTimeTable;
 
     // Dropdown menu
     private ArrayAdapter<String> itemAdapter;
@@ -76,11 +74,13 @@ public class MainActivity extends AppCompatActivity {
         initVariables();
         SetupMainRecyclerView();
         addSectionListener();
+        GenerateTimeTable();
     }
 
     private void initVariables() {
         recyclerView = findViewById(R.id.rv_section_grid);
         fabAddNewSection = findViewById(R.id.fab_add_new_section);
+        btnGenerateTimeTable = findViewById(R.id.btn_generate_timetable);
     }
 
     private void SetupMainRecyclerView() {
@@ -125,8 +125,12 @@ public class MainActivity extends AppCompatActivity {
             public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Section section = documentSnapshot.toObject(Section.class);
                 String id = documentSnapshot.getId();
+                String d = documentSnapshot.getString("department");
+                String s = documentSnapshot.getString("section");
                 Intent sectionIntent = new Intent(MainActivity.this, TimeTableActivity.class);
                 sectionIntent.putExtra("snapshotID", id);
+                sectionIntent.putExtra("snapshotDep", d);
+                sectionIntent.putExtra("snapshotSec", s);
                 startActivity(sectionIntent);
 
                 Toast.makeText(MainActivity.this, "ID: " + id, Toast.LENGTH_SHORT).show();
@@ -277,6 +281,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 //endregion
+            }
+        });
+    }
+
+    private void GenerateTimeTable() {
+        btnGenerateTimeTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String timetable = timetableRef.document().getId();
+
+                Toast.makeText(MainActivity.this, "id: " + timetable, Toast.LENGTH_SHORT).show();
             }
         });
     }
