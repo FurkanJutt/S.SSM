@@ -20,20 +20,19 @@
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
+            android:exported="false"
             android:parentActivityName=".LoginActivity">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <!-- TODO: make initial activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false"
-            android:launchMode="singleTop">
-            <!-- TODO: make initial activity -->
         </activity>
     </application>
 
